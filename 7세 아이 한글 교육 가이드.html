@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>7세 아이 한글 교육 가이드</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --panel: #f6f8fb;
+  --line: #e3e8ee;
+  --ink: #1f2933;
+  --muted: #5f6b7a;
+  --accent: #2f6da3;
+  --accent-soft: #e8f1fa;
+  --sun: #fff4cc;
+  --sun-ink: #7a5b00;
+  --leaf: #e6f4ec;
+  --leaf-ink: #226647;
+  --rose: #fdecec;
+  --rose-ink: #a03a3a;
+  --radius: 10px;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 64px); }
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "Nanum Gothic", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+.wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+/* Header */
+header.top { padding: 40px 0 22px; }
+header.top h1 { font-size: clamp(1.7rem, 5vw, 2.3rem); font-weight: 900; line-height: 1.3; margin: 0 0 10px; letter-spacing: -0.02em; }
+header.top p.lead { margin: 0; color: var(--muted); font-size: 1.05rem; max-width: 34em; }
+
+/* Letter anatomy */
+.anatomy { display: flex; align-items: stretch; flex-wrap: wrap; gap: 10px; margin: 26px 0 4px; }
+.tile { border-radius: var(--radius); padding: 12px 18px 10px; text-align: center; min-width: 96px; flex: 0 1 auto; }
+.tile b { display: block; font-size: 2.6rem; font-weight: 700; line-height: 1.2; }
+.tile span { display: block; font-size: 0.82rem; margin-top: 2px; }
+.tile.c1 { background: var(--accent-soft); color: var(--accent); }
+.tile.c2 { background: var(--sun); color: var(--sun-ink); }
+.tile.c3 { background: var(--leaf); color: var(--leaf-ink); }
+.tile.res { background: #fff; border: 2px solid var(--ink); color: var(--ink); }
+.op { align-self: center; font-size: 1.5rem; color: var(--muted); }
+.anatomy-note { color: var(--muted); font-size: 0.92rem; margin: 6px 0 0; }
+
+/* Tabs */
+nav.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(255,255,255,0.96); border-bottom: 1px solid var(--line); backdrop-filter: blur(6px); }
+nav.tabs .wrap { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding-top: 6px; padding-bottom: 0; }
+nav.tabs .wrap::-webkit-scrollbar { display: none; }
+.tab-btn { appearance: none; border: 0; background: transparent; font: inherit; font-size: 0.95rem; font-weight: 500; color: var(--muted); padding: 11px 14px; white-space: nowrap; cursor: pointer; border-bottom: 3px solid transparent; }
+.tab-btn:hover { color: var(--ink); }
+.tab-btn[aria-selected="true"] { color: var(--accent); font-weight: 700; border-bottom-color: var(--accent); }
+.tab-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 6px; }
+
+/* Panels */
+.panel { display: none; padding: 30px 0 60px; }
+.panel.active { display: block; }
+h2 { font-size: 1.45rem; font-weight: 700; margin: 0 0 6px; letter-spacing: -0.01em; }
+h2 + p.sub { margin: 0 0 22px; color: var(--muted); }
+h3 { font-size: 1.12rem; font-weight: 700; margin: 30px 0 8px; }
+h4 { font-size: 1rem; font-weight: 700; margin: 18px 0 4px; }
+p { margin: 0 0 12px; }
+ul, ol { margin: 0 0 14px; padding-left: 1.3em; }
+li { margin-bottom: 5px; }
+.small { font-size: 0.9rem; color: var(--muted); }
+strong { font-weight: 700; }
+
+.principles { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+.principles li { display: grid; grid-template-columns: 9.5em 1fr; gap: 16px; padding: 14px 0; margin: 0; border-bottom: 1px solid var(--line); }
+.principles li b { color: var(--accent); }
+@media (max-width: 560px) { .principles li { grid-template-columns: 1fr; gap: 2px; } }
+
+.callout { border-radius: var(--radius); padding: 14px 16px; margin: 16px 0; font-size: 0.97rem; }
+.callout.tip { background: var(--sun); color: #4d3b00; }
+.callout.note { background: var(--accent-soft); color: #1d4a72; }
+.callout.warn { background: var(--rose); color: #7a2a2a; }
+.callout.ok { background: var(--leaf); color: #1a4f37; }
+.callout p:last-child, .callout ul:last-child { margin-bottom: 0; }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.95rem; margin: 10px 0 18px; }
+th, td { border-bottom: 1px solid var(--line); padding: 10px 10px; text-align: left; vertical-align: top; }
+th { background: var(--panel); font-weight: 700; font-size: 0.9rem; }
+.scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.scroll-x table { min-width: 520px; }
+
+/* Roadmap */
+.rail { position: relative; margin-left: 4px; padding-left: 26px; border-left: 2px solid var(--line); }
+.stage { position: relative; padding: 0 0 34px; }
+.stage::before { content: ""; position: absolute; left: -35px; top: 6px; width: 16px; height: 16px; background: #fff; border: 3px solid var(--accent); border-radius: 50%; }
+.stage h3 { margin: 0 0 2px; font-size: 1.2rem; }
+.stage .when { color: var(--muted); font-size: 0.9rem; margin-bottom: 10px; }
+.stage dl { margin: 0; display: grid; grid-template-columns: 6.2em 1fr; gap: 8px 14px; }
+.stage dt { font-weight: 700; color: var(--accent); font-size: 0.93rem; }
+.stage dd { margin: 0; font-size: 0.97rem; }
+.stage dd ul { margin: 0; padding-left: 1.1em; }
+@media (max-width: 560px) { .stage dl { grid-template-columns: 1fr; gap: 0; } .stage dt { margin-top: 8px; } }
+.words { display: inline-flex; flex-wrap: wrap; gap: 6px; margin: 2px 0; }
+.words span { background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 1px 12px; font-size: 0.95rem; }
+
+/* Chart */
+.chart-tools { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+.chart-tools label { font-size: 0.92rem; color: var(--muted); display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.chart { border-collapse: separate; border-spacing: 3px; width: auto; min-width: 0; margin: 0; }
+.chart th { background: transparent; border: 0; text-align: center; padding: 4px; font-size: 1.05rem; color: var(--accent); }
+.chart td { border: 0; padding: 0; }
+.chart button { width: 100%; min-width: 44px; height: 46px; font: inherit; font-size: 1.3rem; font-weight: 500; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; }
+.chart button:hover { background: var(--accent-soft); border-color: var(--accent); }
+.chart button:focus-visible { outline: 2px solid var(--accent); }
+.chart tr.hide-adv td button, .chart tr.hide-adv th { }
+.stage-tag { display: inline-block; font-size: 0.74rem; font-weight: 500; border-radius: 6px; padding: 0 6px; margin-left: 4px; vertical-align: middle; }
+.st-a { background: var(--accent-soft); color: var(--accent); }
+.st-b { background: var(--sun); color: var(--sun-ink); }
+.st-c { background: var(--leaf); color: var(--leaf-ink); }
+
+/* Checklist */
+.check-group { border: 1px solid var(--line); border-radius: var(--radius); padding: 6px 16px 10px; margin-bottom: 14px; }
+.check-group h4 { margin: 12px 0 6px; }
+.check-group label { display: flex; gap: 10px; align-items: flex-start; padding: 5px 0; cursor: pointer; font-size: 0.97rem; }
+.check-group input { margin-top: 7px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+.progress { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; margin: 6px 0 4px; }
+.progress i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s; }
+.btn { appearance: none; font: inherit; font-size: 0.9rem; border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 5px 12px; cursor: pointer; color: var(--muted); }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+
+footer { border-top: 1px solid var(--line); padding: 20px 0 40px; color: var(--muted); font-size: 0.85rem; }
+
+@media print {
+  nav.tabs, .chart-tools, .btn { display: none; }
+  .panel { display: block !important; page-break-before: always; padding: 10px 0; }
+  .panel:first-of-type { page-break-before: auto; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <h1>7세 아이 한글 교육 가이드</h1>
+    <p class="lead">소리를 듣는 것에서 시작해 글자를 읽고, 받침을 지나 그림책 한 권을 읽기까지. 12주 로드맵과 매일 쓸 수 있는 수업 틀을 담았습니다.</p>
+    <div class="anatomy" aria-label="한글 글자의 구조">
+      <div class="tile c1"><b>ㅎ</b><span>초성 · 첫소리</span></div>
+      <div class="op">+</div>
+      <div class="tile c2"><b>ㅏ</b><span>중성 · 가운뎃소리</span></div>
+      <div class="op">+</div>
+      <div class="tile c3"><b>ㄴ</b><span>종성 · 받침</span></div>
+      <div class="op">=</div>
+      <div class="tile res"><b>한</b><span>한 글자(음절)</span></div>
+    </div>
+    <p class="anatomy-note">한글은 자음과 모음을 블록처럼 모아 한 글자를 만듭니다. 이 원리를 아이가 이해하면 배우지 않은 글자도 읽을 수 있게 됩니다.</p>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="가이드 목차">
+  <div class="wrap" role="tablist">
+    <button class="tab-btn" role="tab" id="t-intro" aria-controls="p-intro" aria-selected="true">시작하기</button>
+    <button class="tab-btn" role="tab" id="t-road" aria-controls="p-road" aria-selected="false">단계별 로드맵</button>
+    <button class="tab-btn" role="tab" id="t-chart" aria-controls="p-chart" aria-selected="false">글자표</button>
+    <button class="tab-btn" role="tab" id="t-lesson" aria-controls="p-lesson" aria-selected="false">수업 틀·주간표</button>
+    <button class="tab-btn" role="tab" id="t-play" aria-controls="p-play" aria-selected="false">놀이 활동</button>
+    <button class="tab-btn" role="tab" id="t-write" aria-controls="p-write" aria-selected="false">쓰기 지도</button>
+    <button class="tab-btn" role="tab" id="t-fix" aria-controls="p-fix" aria-selected="false">문제 해결</button>
+    <button class="tab-btn" role="tab" id="t-check" aria-controls="p-check" aria-selected="false">체크리스트</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ================= 시작하기 ================= -->
+<section class="panel active" id="p-intro" role="tabpanel" aria-labelledby="t-intro">
+  <h2>가르치기 전에 알아둘 원칙</h2>
+  <p class="sub">방법보다 먼저 방향입니다. 아래 여덟 가지만 지켜도 대부분의 시행착오를 줄일 수 있습니다.</p>
+
+  <ul class="principles">
+    <li><b>소리가 먼저</b><span>글자를 보여주기 전에 말소리를 쪼개고 합치는 놀이(음운 인식)부터 합니다. “바나나”가 “바-나-나” 세 조각이라는 것을 귀로 아는 아이가 글자도 빨리 잡습니다.</span></li>
+    <li><b>이름보다 소리</b><span>ㄱ의 이름은 “기역”이지만 글자를 읽을 때 쓰는 소리는 “그”에 가깝습니다. 읽기 연습은 소리 중심으로 하고, 이름(기역, 니은…)은 노래나 표를 통해 나중에 자연스럽게 익히게 하세요.</span></li>
+    <li><b>짧게, 자주</b><span>하루 15~20분, 주 4~5회가 이상적입니다. 새 글자는 하루 1~2개만 다루고, 나머지 시간은 복습과 놀이로 채웁니다.</span></li>
+    <li><b>의미 있는 글자부터</b><span>아이 이름, 가족 이름, 좋아하는 음식·동물처럼 “내 것”인 글자는 기억에 오래 남습니다. 낱자를 익히는 동안에도 이런 통글자를 함께 보여주면 동기가 유지됩니다.</span></li>
+    <li><b>읽기가 먼저, 쓰기는 천천히</b><span>7세 아이는 소근육 발달 편차가 큽니다. 읽기는 빨리 진행하되, 쓰기는 손 힘과 흥미에 맞춰 따로 속도를 조절하세요.</span></li>
+    <li><b>같은 내용을 다른 모양으로 반복</b><span>카드, 자석, 몸 놀이, 그림책, 쓰기로 같은 글자를 여러 경로로 만나게 합니다. 반복이 지루해지지 않는 핵심입니다.</span></li>
+    <li><b>틀리면 다시 들려주기</b><span>“아니야”보다 “다시 같이 소리 내볼까? 그~ 아~ 가!”처럼 정답 소리를 모델링해 줍니다. 다른 아이와 비교하지 않습니다.</span></li>
+    <li><b>그림책 읽어주기 병행</b><span>글자 공부와 별개로 하루 한 권, 책 읽어주는 시간을 유지하세요. 문자에 대한 호감과 어휘력이 함께 자랍니다.</span></li>
+  </ul>
+
+  <h3>먼저 현재 수준부터 확인하세요</h3>
+  <p>아이가 이미 아는 부분은 건너뛰고 모르는 곳에서 시작합니다. 아래 세 가지를 놀이하듯 물어보세요.</p>
+  <ol>
+    <li><strong>소리 쪼개기</strong>: “아이스크림”을 손뼉으로 나눠 보게 합니다. (아-이-스-크-림, 5번)</li>
+    <li><strong>첫소리 찾기</strong>: “사과, 사자, 바다 중에서 ‘사’로 시작하지 않는 건?”</li>
+    <li><strong>글자 카드 10장</strong>: 가, 나, 모, 소, 아이, 오이, 바지, 사자, 나무, 하마를 무작위로 보여주고 읽게 합니다.</li>
+  </ol>
+  <div class="scroll-x">
+  <table>
+    <tr><th>확인 결과</th><th>시작 단계</th></tr>
+    <tr><td>소리 쪼개기가 어렵거나, 글자를 거의 모른다</td><td>단계 0부터</td></tr>
+    <tr><td>소리 쪼개기는 되고 모음을 어느 정도 안다</td><td>단계 1부터 (아는 것은 빠르게 넘기기)</td></tr>
+    <tr><td>가나다 같은 “자음+모음” 글자는 읽는다</td><td>단계 3~4부터</td></tr>
+    <tr><td>받침 없는 단어는 술술 읽는다</td><td>단계 6(받침)부터</td></tr>
+    <tr><td>받침 있는 단어도 읽는다</td><td>단계 8(문장·책 읽기)과 쓰기 지도</td></tr>
+  </table>
+  </div>
+
+  <h3>준비물</h3>
+  <ul>
+    <li>자음·모음 카드 또는 냉장고 자석 글자 (크고 손에 잡히는 것)</li>
+    <li>단어 그림 카드 20~30장 (직접 그려도 좋습니다)</li>
+    <li>작은 화이트보드와 마카, 굵은 색연필 또는 삼각 연필</li>
+    <li>모눈 또는 4선 없이 칸이 큰 쓰기 노트</li>
+    <li>쉬운 그림책 10권 정도 (글밥이 적고 반복 문장이 있는 책)</li>
+    <li>칭찬 스티커판 (결과보다 “했다”는 행동에 붙여주세요)</li>
+  </ul>
+
+  <h3>환경과 시간대</h3>
+  <ul>
+    <li>아이가 배고프거나 졸리지 않은 시간, 놀이 직후보다는 조금 진정된 시간이 좋습니다.</li>
+    <li>수업 때는 화면(TV·태블릿)을 꺼 두고, 같은 자리·같은 시간에 하면 습관이 됩니다.</li>
+    <li>집 안 사물에 이름표를 붙이세요(문, 냉장고, 의자). 생활 속에서 글자를 계속 마주치게 됩니다.</li>
+  </ul>
+  <div class="callout note">
+    <p>아이마다 속도 차이가 큽니다. 아래 12주 계획은 표준적인 진행 예시이니, 아이가 빨리 익히면 건너뛰고 더디면 같은 단계에 머물러도 괜찮습니다. 학교나 유치원 교육과정이 있다면 그쪽 순서와 자연스럽게 맞춰 주세요.</p>
+  </div>
+</section>
+
+<!-- ================= 로드맵 ================= -->
+<section class="panel" id="p-road" role="tabpanel" aria-labelledby="t-road">
+  <h2>단계별 로드맵</h2>
+  <p class="sub">각 단계는 “통과 기준”을 만족하면 다음으로 넘어갑니다. 기간은 주 4~5회, 회당 15~20분 기준입니다.</p>
+
+  <div class="rail">
+
+    <article class="stage">
+      <h3>단계 0. 말소리 귀 열기</h3>
+      <div class="when">약 1주 · 글자 없이 시작</div>
+      <dl>
+        <dt>목표</dt><dd>말은 작은 소리 조각으로 이루어져 있다는 감각을 만든다.</dd>
+        <dt>활동</dt>
+        <dd><ul>
+          <li>음절 박수: “고-구-마”, “바-나-나”를 박수·발 구르기로 나누기</li>
+          <li>첫소리 놀이: “사과, 사자, 사탕… ‘사’로 시작하는 말 또 뭐 있을까?”</li>
+          <li>소리 빼기·바꾸기: “바나나에서 ‘바’를 빼면?” → “나나”, “고기 → 도기”</li>
+          <li>끝말잇기, 동요와 운율 있는 말놀이</li>
+          <li>글자 환경 만들기: 아이 이름 카드를 만들고 “○○이 이름이 어디 있지?” 찾기</li>
+        </ul></dd>
+        <dt>통과 기준</dt><dd>3음절 단어를 박수로 정확히 나눈다. 첫소리가 같은 단어를 두세 개 찾는다.</dd>
+      </dl>
+    </article>
+
+    <article class="stage">
+      <h3>단계 1. 기본 모음 6개</h3>
+      <div class="when">약 1주 · ㅏ ㅓ ㅗ ㅜ ㅡ ㅣ</div>
+      <dl>
+        <dt>가르치는 순서</dt>
+        <dd>ㅏ → ㅣ → ㅗ → ㅜ → ㅓ → ㅡ. 모양이 뚜렷하고 소리 차이가 큰 것부터 만납니다. 세로로 긴 모음(ㅏ ㅓ ㅣ)과 가로로 긴 모음(ㅗ ㅜ ㅡ)을 나누어 “세로 모음은 오른쪽, 가로 모음은 아래쪽”이라는 위치 감각도 미리 심어 둡니다.</dd>
+        <dt>핵심 설명</dt>
+        <dd>모음 글자는 첫소리 자리에 “ㅇ”을 붙여 씁니다. 이때 ㅇ은 소리가 없는 빈 자리라고 알려주세요. (ㅇ+ㅏ = 아)</dd>
+        <dt>입 모양 놀이</dt>
+        <dd>거울 앞에서 입 모양을 따라 합니다. 아(크게 벌림) · 오(동그랗게) · 우(앞으로 오므림) · 으(옆으로 당김) · 이(미소) · 어(턱을 살짝 내림).</dd>
+        <dt>연습 단어</dt>
+        <dd><span class="words"><span>아이</span><span>오이</span><span>아야</span><span>우아</span></span></dd>
+        <dt>통과 기준</dt><dd>모음 6개를 섞어 보여줬을 때 소리를 내며 3초 안에 읽는다.</dd>
+      </dl>
+    </article>
+
+    <article class="stage">
+      <h3>단계 2. 기본 자음과 첫 결합 읽기</h3>
+      <div class="when">약 2주 · ㄱ ㄴ ㅁ ㅅ / ㅈ ㅂ ㄷ ㅎ</div>
+      <dl>
+        <dt>가르치는 순서</dt>
+        <dd>
+          <ul>
+            <li><strong>1묶음</strong>: ㄱ, ㄴ, ㅁ, ㅅ (소리가 안정적이고 단어가 많음)</li>
+            <li><strong>2묶음</strong>: ㅈ, ㅂ, ㄷ, ㅎ</li>
+            <li>하루에 자음 1개를 소개하고, 그 자음과 배운 모음 6개를 결합해 읽습니다.</li>
+          </ul>
+        </dd>
+        <dt>소개 방법</dt>
+        <dd>
+          <ul>
+            <li>① 소리 듣기 → ② 그 소리로 시작하는 그림(예: ㄴ-나비) → ③ 모양 이야기 → ④ 결합해 읽기</li>
+            <li>합쳐 읽기(블렌딩): 소리를 늘려서 이어 붙입니다. “ㄴ~~ㅏ~~ → 나”. 처음엔 느리게, 점점 빠르게.</li>
+            <li>글자 블록 놀이: 자음 카드와 모음 카드를 나란히 놓아 새 글자를 “만들어” 봅니다. 자음 카드를 바꿔 끼우며 가, 나, 마, 사를 읽게 합니다.</li>
+          </ul>
+        </dd>
+        <dt>연습 단어</dt>
+        <dd>
+          <span class="words"><span>가지</span><span>고기</span><span>나비</span><span>나무</span><span>누나</span><span>모자</span><span>머리</span><span>사자</span><span>시소</span><span>바지</span><span>보리</span><span>자두</span><span>다리</span><span>하마</span><span>허리</span><span>호두</span></span>
+        </dd>
+        <dt>통과 기준</dt><dd>배운 자음×모음 조합 중 무작위 10개를 90% 이상 읽는다. 위 단어를 카드로 읽는다.</dd>
+      </dl>
+    </article>
+
+    <article class="stage">
+      <h3>단계 3. ㄹ과 거센소리 ㅋ ㅌ ㅍ ㅊ</h3>
+      <div class="when">약 1주</div>
+      <dl>
+        <dt>ㄹ</dt>
+        <dd>단어 안에서 자주 쓰이지만 소리 내기가 까다롭습니다. “나라, 다리, 아리”처럼 어중에서 부드럽게 굴리는 소리를 먼저 익힙니다.</dd>
+        <dt>거센소리 짝짓기</dt>
+        <dd>
+          <ul>
+            <li>ㄱ → <strong>ㅋ</strong>, ㄷ → <strong>ㅌ</strong>, ㅂ → <strong>ㅍ</strong>, ㅈ → <strong>ㅊ</strong>: 이미 아는 글자에 획을 더하면 숨이 세게 나오는 소리가 된다는 점을 보여줍니다.</li>
+            <li>종이 실험: 종이를 입 앞에 대고 “바”와 “파”를 말해 봅니다. “파”에서 종이가 크게 흔들립니다. “다·타”, “자·차”, “가·카”도 비교합니다.</li>
+          </ul>
+        </dd>
+        <dt>연습 단어</dt>
+        <dd><span class="words"><span>나라</span><span>라디오</span><span>코</span><span>키</span><span>타조</span><span>토마토</span><span>포도</span><span>파</span><span>치마</span><span>치즈</span><span>사탕</span><span>거리</span></span></dd>
+        <dt>통과 기준</dt><dd>자음 14개를 섞어도 소리와 모양이 연결되고, 짝(ㄱ-ㅋ 등)의 차이를 말할 수 있다.</dd>
+      </dl>
+    </article>
+
+    <article class="stage">
+      <h3>단계 4. ㅑ ㅕ ㅛ ㅠ, ㅐ ㅔ</h3>
+      <div class="when">약 1주</div>
+      <dl>
+        <dt>ㅑ ㅕ ㅛ ㅠ</dt>
+        <dd>기본 모음에 짧은 획을 하나 더한 모양입니다. ㅣ 소리가 앞에 살짝 붙는다고 알려줍니다. (아 → 야, 어 → 여, 오 → 요, 우 → 유) 한 개씩 나열하지 말고 “ㅏ와 ㅑ, ㅓ와 ㅕ”처럼 짝지어 비교하며 배우세요.</dd>
+        <dt>ㅐ ㅔ</dt>
+        <dd>두 모음은 소리가 거의 같아서 처음에는 헷갈려 하는 것이 정상입니다. 소리로 구별시키려 하지 말고, 자주 쓰는 단어를 통째로 익히게 합니다. (개, 배, 새, 내 / 게, 네모, 세모, 제비)</dd>
+        <dt>연습 단어</dt>
+        <dd><span class="words"><span>야구</span><span>여우</span><span>요리</span><span>우유</span><span>유리</span><span>개미</span><span>새</span><span>배</span><span>게</span><span>네모</span><span>세모</span><span>제비</span></span></dd>
+        <dt>통과 기준</dt><dd>모음 10개(ㅏ ㅑ ㅓ ㅕ ㅗ ㅛ ㅜ ㅠ ㅡ ㅣ)를 자음과 결합해 읽는다. ㅐ, ㅔ가 든 자주 쓰는 단어를 읽는다.</dd>
+      </dl>
+    </article>
+
+    <article class="stage">
+      <h3>단계 5. 복합 모음과 쌍자음</h3>
+      <div class="when">약 1주 · ㅘ ㅝ ㅢ ㅚ ㅟ ㅙ ㅞ / ㄲ ㄸ ㅃ ㅆ ㅉ</div>
+      <dl>
+        <dt>복합 모음</dt>
+        <dd>“두 모음이 손잡고 함께 소리 난다”고 설명합니다. ㅗ+ㅏ = ㅘ (과), ㅜ+ㅓ = ㅝ (워), ㅡ+ㅣ = ㅢ (의). 자주 쓰는 것부터 단어 중심으로 만납니다.</dd>
+        <dt>쌍자음</dt>
+        <dd>같은 자음을 두 개 쓴 글자로, 소리가 더 단단하고 강합니다. ㄱ/ㄲ, ㄷ/ㄸ, ㅂ/ㅃ, ㅅ/ㅆ, ㅈ/ㅉ를 짝으로 비교해 읽습니다. (가-까, 다-따, 바-빠, 사-싸, 자-짜)</dd>
+        <dt>연습 단어</dt>
+        <dd><span class="words"><span>과자</span><span>사과</span><span>의자</span><span>의사</span><span>귀</span><span>쥐</span><span>돼지</span><span>왜</span><span>까치</span><span>아빠</span><span>오빠</span><span>토끼</span><span>싸다</span><span>짜다</span></span></dd>
+        <dt>통과 기준</dt><dd>이 단계의 글자를 카드로 읽고, 단어 속에서도 걸리지 않고 읽는다.</dd>
+      </dl>
+      <div class="callout tip"><p>ㅢ는 “의자”에서는 [의], “나의”에서는 [에]처럼 소리가 달라지기도 합니다. 7세에게 규칙을 설명하지 말고, 아이가 “의”라고 읽으면 그대로 받아 주세요.</p></div>
+    </article>
+
+    <article class="stage">
+      <h3>단계 6. 받침 ― 대표 소리 7개</h3>
+      <div class="when">약 2주 · ㄴ ㅁ ㅇ ㄹ → ㄱ ㅂ ㄷ</div>
+      <dl>
+        <dt>개념 잡기</dt>
+        <dd>“글자 아래층에 붙는 마지막 소리”라고 알려줍니다. 가 + ㄴ = 간. 집 모양 그림(위층·아래층)이나 블록 카드로 보여주면 이해가 빠릅니다.</dd>
+        <dt>가르치는 순서</dt>
+        <dd>
+          <ul>
+            <li><strong>1주차</strong>: ㄴ, ㅁ, ㅇ, ㄹ (울림이 길어 소리가 잘 들리는 받침)</li>
+            <li><strong>2주차</strong>: ㄱ, ㅂ, ㄷ (소리가 끊기는 받침. 발음은 닫아 주는 느낌)</li>
+            <li>같은 글자에 받침만 바꿔 읽기: 가 → 간 · 감 · 강 · 갈 · 각 · 갑</li>
+          </ul>
+        </dd>
+        <dt>연습 단어</dt>
+        <dd><span class="words"><span>산</span><span>문</span><span>눈</span><span>손</span><span>밤</span><span>곰</span><span>공</span><span>강</span><span>달</span><span>물</span><span>발</span><span>별</span><span>국</span><span>밥</span><span>집</span><span>책</span></span></dd>
+        <dt>통과 기준</dt><dd>같은 글자에 받침을 바꿔 붙인 것을 읽고, 위 단어를 카드로 읽는다.</dd>
+      </dl>
+      <div class="callout note"><p>받침으로 쓰이는 글자는 많지만(ㅅ, ㅈ, ㅊ, ㅌ, ㅍ, ㅎ 등) 소리는 대표 7가지 중 하나로 납니다. 예: 옷[옫], 꽃[꼳], 밖[박]. 아이에게는 “이 글자는 그냥 이렇게 읽어요”라고만 알려주세요.</p></div>
+    </article>
+
+    <article class="stage">
+      <h3>단계 7. 소리가 바뀌는 글자 만나기</h3>
+      <div class="when">약 1주 · 규칙은 가르치지 말고 경험하게 하기</div>
+      <dl>
+        <dt>내용</dt>
+        <dd>
+          <ul>
+            <li>이어 읽기: 밥이 → [바비], 꽃이 → [꼬치], 옷이 → [오시]</li>
+            <li>겹받침이 든 흔한 단어: 닭, 없다, 읽다, 앉다 (그냥 “한 덩어리 단어”로 익힘)</li>
+            <li>쌍받침이 든 단어: 밖, 있다, 갔다</li>
+          </ul>
+        </dd>
+        <dt>지도 방법</dt>
+        <dd>소리 나는 대로 크게 읽어 주고 아이가 따라 하게 합니다. 이 단계에서는 “왜?”를 설명하는 것보다 “이렇게 읽는 거야”가 낫습니다. 아이가 [밥이]를 [바비]로 읽어 주면 성공입니다.</dd>
+        <dt>통과 기준</dt><dd>이 단계 단어가 나오는 짧은 문장을 막힘 없이 읽는다.</dd>
+      </dl>
+    </article>
+
+    <article class="stage">
+      <h3>단계 8. 단어 → 문장 → 책 읽기</h3>
+      <div class="when">약 2주 이상 · 계속 이어짐</div>
+      <dl>
+        <dt>문장 읽기</dt>
+        <dd>
+          <ul>
+            <li>두 단어 문장부터: “나비가 날아요.”, “사과를 먹어요.”</li>
+            <li>띄어쓰기와 마침표를 알려줍니다. 띄어쓰기에서는 잠깐 숨을 쉰다고 설명해 주세요.</li>
+            <li>손가락이나 막대로 짚으며 읽는 것은 자연스러운 방법입니다.</li>
+          </ul>
+        </dd>
+        <dt>책 읽기 4단계</dt>
+        <dd>
+          <ol>
+            <li><strong>들려주기</strong>: 부모가 읽어 주고 아이는 듣기</li>
+            <li><strong>같이 읽기</strong>: 부모와 아이가 함께 소리 내어 읽기</li>
+            <li><strong>번갈아 읽기</strong>: 한 쪽씩, 또는 한 문장씩 교대</li>
+            <li><strong>혼자 읽기</strong>: 아이가 읽고 부모는 듣고 반응해 주기</li>
+          </ol>
+        </dd>
+        <dt>이해력 키우기</dt>
+        <dd>읽은 뒤 “어떤 일이 있었어?”, “네가 주인공이라면?”처럼 짧게 이야기 나눕니다. 정답을 확인하는 시험이 아니라 대화가 목적입니다.</dd>
+        <dt>책 고르기</dt>
+        <dd>한 쪽에 한두 문장, 반복 표현이 있고, 그림이 내용을 잘 받쳐 주는 책이 좋습니다. 한 쪽에서 아이가 막히는 단어가 5개를 넘으면 조금 어려운 책입니다.</dd>
+        <dt>통과 기준</dt><dd>글밥이 적은 그림책 한 권을 도움을 조금 받아 끝까지 읽는다. 읽고 나서 내용을 자기 말로 말한다.</dd>
+      </dl>
+    </article>
+
+  </div>
+</section>
+
+<!-- ================= 글자표 ================= -->
+<section class="panel" id="p-chart" role="tabpanel" aria-labelledby="t-chart">
+  <h2>글자표</h2>
+  <p class="sub">글자를 누르면 브라우저 음성으로 읽어 줍니다. 아이에게는 부모님이 직접 소리를 들려주는 것이 가장 좋고, 음성은 참고용으로만 쓰세요.</p>
+
+  <h3 style="margin-top:0">자음 × 모음 표</h3>
+  <p class="small">가로 모음은 단계 1과 4, 세로 자음은 단계 2와 3에서 배웁니다. 표를 만들며 “세로줄은 같은 모음, 가로줄은 같은 자음”이라는 규칙을 발견하게 해 주세요.</p>
+  <div class="scroll-x"><table class="chart" id="chart-main"></table></div>
+
+  <h3>받침 표 ― 같은 글자에 대표 받침 7개</h3>
+  <p class="small">각 줄은 받침만 바꿔 읽는 연습용입니다. 받침 자리는 ㄱ · ㄴ · ㄷ · ㄹ · ㅁ · ㅂ · ㅇ 순서입니다.</p>
+  <div class="scroll-x"><table class="chart" id="chart-batchim"></table></div>
+
+  <div class="callout tip">
+    <p>이 표를 A4로 인쇄해 벽에 붙이고, 배운 칸에만 스티커를 붙여 나가세요. 아이가 자기 진도를 눈으로 확인할 수 있어 동기가 유지됩니다.</p>
+  </div>
+</section>
+
+<!-- ================= 수업 틀 ================= -->
+<section class="panel" id="p-lesson" role="tabpanel" aria-labelledby="t-lesson">
+  <h2>수업 틀과 12주 계획</h2>
+  <p class="sub">매일 같은 순서로 진행하면 아이가 예측할 수 있어 안정감을 느낍니다.</p>
+
+  <h3 style="margin-top:0">하루 20분 수업 구성</h3>
+  <div class="scroll-x">
+  <table>
+    <tr><th style="width:5.5em">시간</th><th style="width:9em">활동</th><th>내용</th></tr>
+    <tr><td>2분</td><td>소리 워밍업</td><td>말소리 놀이(박수 나누기, 첫소리 찾기, 끝말잇기) 중 하나.</td></tr>
+    <tr><td>3분</td><td>복습 카드</td><td>어제·지난주 글자 카드를 섞어 읽기. 틀린 카드는 옆에 따로 두고 다음 날 다시 만납니다.</td></tr>
+    <tr><td>5분</td><td>새 글자 소개</td><td>소리 → 그림 → 모양 이야기 → 결합 읽기 순서로. 하루 1~2개만.</td></tr>
+    <tr><td>6분</td><td>놀이로 굳히기</td><td>“놀이 활동” 탭에서 그날 글자에 맞는 놀이를 하나 고릅니다.</td></tr>
+    <tr><td>2분</td><td>쓰기</td><td>큰 글씨로 새 글자를 한두 번만. 억지로 늘리지 않습니다.</td></tr>
+    <tr><td>2분</td><td>마무리 읽기·칭찬</td><td>짧은 그림책 한 쪽 함께 읽고, 오늘 잘한 점을 구체적으로 칭찬합니다.</td></tr>
+  </table>
+  </div>
+
+  <h3>복습 원칙</h3>
+  <ul>
+    <li><strong>복습 70 : 새 글자 30</strong>. 새로운 내용이 많으면 아이가 금방 지칩니다.</li>
+    <li><strong>간격 복습</strong>: 배운 다음 날 → 3일 뒤 → 1주 뒤에 같은 카드를 다시 꺼냅니다.</li>
+    <li><strong>카드 상자 세 칸</strong>: 못 읽는 카드(1칸), 가끔 틀리는 카드(2칸), 척척 읽는 카드(3칸). 성공하면 한 칸씩 이동하고, 틀리면 1칸으로 돌아갑니다.</li>
+    <li>매주 마지막 날은 “놀이 데이”로, 새 글자 없이 그 주 내용을 놀이로만 복습합니다.</li>
+  </ul>
+
+  <h3>칭찬하는 말</h3>
+  <div class="callout ok">
+    <ul>
+      <li>“‘ㅁ’ 소리 내면서 입술이 딱 붙는 거 알았구나!”</li>
+      <li>“틀렸는데 다시 해 봤네, 그게 진짜 실력이야.”</li>
+      <li>“어제는 세 개 읽었는데 오늘은 다섯 개 읽었어.”</li>
+    </ul>
+  </div>
+  <p class="small">“똑똑하다”처럼 능력을 칭찬하는 말보다 노력과 과정을 구체적으로 말해 주는 편이 아이가 도전을 이어 가는 데 도움이 됩니다.</p>
+
+  <h3>12주 표준 계획</h3>
+  <div class="scroll-x">
+  <table>
+    <tr><th style="width:4.5em">주차</th><th>주제</th><th>이번 주 목표</th></tr>
+    <tr><td>1주</td><td>소리 놀이 · 이름 글자 (단계 0)</td><td>음절 나누기, 첫소리 찾기, 내 이름 알아보기</td></tr>
+    <tr><td>2주</td><td>기본 모음 6개 (단계 1)</td><td>ㅇ+모음 6글자를 읽고 쓰기, 아이·오이</td></tr>
+    <tr><td>3주</td><td>ㄱ ㄴ ㅁ ㅅ (단계 2)</td><td>자음 4개×모음 6개 읽기</td></tr>
+    <tr><td>4주</td><td>ㅈ ㅂ ㄷ ㅎ + 종합 (단계 2)</td><td>배운 글자로 단어 읽기(가지, 바지, 하마)</td></tr>
+    <tr><td>5주</td><td>ㄹ · ㅋ ㅌ ㅍ ㅊ (단계 3)</td><td>자음 14개 모두 소리와 모양 연결</td></tr>
+    <tr><td>6주</td><td>ㅑ ㅕ ㅛ ㅠ · ㅐ ㅔ (단계 4)</td><td>모음 10개 + ㅐ ㅔ 단어 읽기</td></tr>
+    <tr><td>7주</td><td>복합 모음 · 쌍자음 (단계 5)</td><td>과자, 사과, 의자, 아빠, 토끼</td></tr>
+    <tr><td>8주</td><td>받침 ㄴ ㅁ ㅇ ㄹ (단계 6)</td><td>산, 곰, 강, 달 읽기, 받침 바꿔 읽기</td></tr>
+    <tr><td>9주</td><td>받침 ㄱ ㅂ ㄷ (단계 6)</td><td>국, 밥, 책 읽기</td></tr>
+    <tr><td>10주</td><td>소리 바뀌는 글자 (단계 7)</td><td>밥이, 꽃이, 닭, 없다 경험하기</td></tr>
+    <tr><td>11주</td><td>문장 읽기 (단계 8)</td><td>2~3단어 문장, 띄어쓰기와 마침표</td></tr>
+    <tr><td>12주</td><td>그림책 읽기 · 종합 점검</td><td>그림책 한 권 읽기, 체크리스트 점검</td></tr>
+  </table>
+  </div>
+  <div class="callout note"><p>목표는 12주 완성이 아닙니다. 아이가 하루 이틀 빠지거나 한 단계를 더 오래 하는 일은 흔합니다. 계획보다 <strong>“오늘도 즐거웠다”</strong>는 기억이 더 중요합니다.</p></div>
+</section>
+
+<!-- ================= 놀이 ================= -->
+<section class="panel" id="p-play" role="tabpanel" aria-labelledby="t-play">
+  <h2>놀이 활동 모음</h2>
+  <p class="sub">같은 글자도 놀이를 바꾸면 새로워집니다. 하루에 한 가지만 골라 진행하세요.</p>
+
+  <h3 style="margin-top:0">소리 놀이 (글자 없이)</h3>
+  <ul>
+    <li><strong>박수 쪼개기</strong>: 과일 이름, 가족 이름, 동물 이름을 박수 수만큼 나눈다.</li>
+    <li><strong>소리 택시</strong>: “‘ㅅ’ 소리로 시작하는 곳에 데려다주세요!” 아이가 그 소리로 시작하는 단어를 말하면 출발.</li>
+    <li><strong>빠진 소리 찾기</strong>: “바나…”에서 빠진 소리가 뭘까? “ㄴ”? “나”!</li>
+    <li><strong>로봇 말투</strong>: 로봇처럼 “아-이-스-크-림”을 끊어 말하고, 다시 이어서 말하기 (블렌딩 연습).</li>
+  </ul>
+
+  <h3>글자와 친해지는 놀이</h3>
+  <ul>
+    <li><strong>글자 낚시</strong>: 글자 카드에 클립을 붙이고 자석 낚싯대로 낚는다. 낚은 카드를 읽으면 획득.</li>
+    <li><strong>보물찾기</strong>: 집 안 곳곳에 카드를 숨기고, 찾은 카드를 읽어야 다음 힌트를 준다.</li>
+    <li><strong>글자 빙고</strong>: 3×3 또는 4×4 칸에 배운 글자를 쓰고 부모가 부르는 소리를 찾아 지운다.</li>
+    <li><strong>카드 뒤집기</strong>: 글자 카드와 그림 카드를 짝 맞추는 기억력 놀이. (‘나’ 카드 ↔ 나비 그림)</li>
+    <li><strong>자석 글자 만들기</strong>: 냉장고에 자음·모음 자석을 붙여 “아이 이름 만들기”, “가족 이름 만들기”, “내가 좋아하는 음식 만들기”.</li>
+    <li><strong>글자 사냥</strong>: 마트 전단, 간판, 과자 봉지에서 오늘 배운 글자를 찾아 동그라미.</li>
+  </ul>
+
+  <h3>몸과 오감으로 배우기</h3>
+  <ul>
+    <li><strong>몸으로 글자 만들기</strong>: 팔·다리·온몸으로 ㅏ, ㅣ, ㅗ, ㅁ 모양을 만든다. 둘이 함께 ㅎ이나 ㅂ을 만들어도 재미있다.</li>
+    <li><strong>감각 상자</strong>: 쌀, 모래, 밀가루를 쟁반에 깔고 손가락으로 글자를 쓴다.</li>
+    <li><strong>찰흙 글자</strong>: 클레이로 자음·모음을 빚어 보기. 만든 글자를 조합해 단어도 만든다.</li>
+    <li><strong>등에 쓰기</strong>: 부모가 아이 등에 글자를 손가락으로 쓰고, 아이가 맞히기. 역할을 바꿔서도 해 본다.</li>
+    <li><strong>물감 글자</strong>: 욕실 벽이나 마당 바닥에 물 붓으로 큰 글씨를 쓴다.</li>
+  </ul>
+
+  <h3>단어와 문장으로 확장</h3>
+  <ul>
+    <li><strong>가게 놀이</strong>: 과일·과자 가격표와 이름표를 직접 만들고, 손님이 “사과 주세요” 카드를 읽는다.</li>
+    <li><strong>편지·쪽지 주고받기</strong>: 아침에 “사랑해”, “잘 잤어?” 같은 짧은 쪽지를 도시락이나 침대 옆에 둔다.</li>
+    <li><strong>미션 카드</strong>: “냉장고에서 우유 가져오기”, “의자 앞에 앉기”처럼 짧은 지시문을 읽고 행동한다.</li>
+    <li><strong>그림일기 첫걸음</strong>: 그림을 그리고 그 아래에 아이가 소리 나는 대로 한 문장을 쓴다. 맞춤법은 고치지 말고 내용을 칭찬한다.</li>
+  </ul>
+
+  <div class="callout tip"><p>놀이 중에 아이가 흥미를 잃으면 억지로 이어 가지 말고 “오늘은 여기까지!”로 마무리하세요. 아이가 “더 하고 싶다”고 할 때 끝내는 것이 다음 수업으로 이어지는 비결입니다.</p></div>
+</section>
+
+<!-- ================= 쓰기 ================= -->
+<section class="panel" id="p-write" role="tabpanel" aria-labelledby="t-write">
+  <h2>쓰기 지도</h2>
+  <p class="sub">읽기와 쓰기는 서로 돕지만 속도는 다릅니다. 읽기가 조금 앞서 가도 정상입니다.</p>
+
+  <h3 style="margin-top:0">쓰기 준비: 손과 자세</h3>
+  <ul>
+    <li>의자 높이는 발이 바닥에 닿고, 책상은 팔꿈치 높이 정도가 알맞습니다.</li>
+    <li>굵은 색연필이나 삼각 연필로 시작하고, 연필 쥐는 자세는 억지로 고치지 말고 놀이(집게, 구슬 옮기기, 가위질, 점토)로 손 힘을 먼저 키웁니다.</li>
+    <li>한 번에 쓰는 시간은 5분 이내, 새 글자를 쓰는 횟수는 한두 번이면 충분합니다.</li>
+  </ul>
+
+  <h3>쓰기 5단계</h3>
+  <ol>
+    <li><strong>공중·바닥 쓰기</strong>: 손가락으로 공중에, 모래·밀가루 위에 크게 씁니다.</li>
+    <li><strong>큰 글씨</strong>: 화이트보드, 전지, 칠판에 팔 전체를 써서 큼직하게 씁니다.</li>
+    <li><strong>점선 따라 쓰기</strong>: 부모가 점선으로 글자를 써 주면 아이가 따라 씁니다.</li>
+    <li><strong>칸 안에 쓰기</strong>: 큰 칸(모눈)에 자음·모음의 위치와 크기를 맞춰 씁니다.</li>
+    <li><strong>단어·문장 쓰기</strong>: 자기 이름, 가족 이름, 좋아하는 단어, 짧은 문장으로 확장합니다.</li>
+  </ol>
+
+  <h3>기본 획순 원칙</h3>
+  <ul>
+    <li>위에서 아래로, 왼쪽에서 오른쪽으로 씁니다.</li>
+    <li>글자 안에서는 자음을 먼저, 그다음 모음을 씁니다.</li>
+    <li>세로로 긴 모음(ㅏ ㅓ ㅣ 등)이 들어가면 자음은 <strong>왼쪽</strong>, 모음은 <strong>오른쪽</strong>에 씁니다. (가, 너, 미)</li>
+    <li>가로로 긴 모음(ㅗ ㅜ ㅡ 등)이 들어가면 자음은 <strong>위</strong>, 모음은 <strong>아래</strong>에 씁니다. (고, 누, 므)</li>
+    <li>받침이 있으면 받침은 맨 아래 칸에 씁니다. (간, 곰)</li>
+    <li>자세한 획 순서는 교과서나 글씨 교본의 도해를 참고하고, 처음부터 정확히 요구하기보다 반복해서 보여 주세요.</li>
+  </ul>
+
+  <h3>이름 쓰기 → 소리 나는 대로 쓰기</h3>
+  <ul>
+    <li>자기 이름을 가장 먼저 쓰게 하면 “글자를 쓴다”는 성취감이 큽니다.</li>
+    <li>어느 정도 글자를 알게 되면 “소리 나는 대로 써 보기”를 권합니다. 이때 맞춤법(예: ‘같이’를 ‘가치’로 쓰기)은 바로 고치지 않아도 됩니다. 쓰기의 즐거움을 지키는 것이 먼저이고, 학교에서 맞춤법을 차츰 배웁니다.</li>
+    <li>아이가 쓴 글에 부모가 답장을 써 주면 쓰기 동기가 크게 자랍니다.</li>
+  </ul>
+  <div class="callout note"><p>거울 글자(ㅏ와 ㅓ, ㅂ과 ㅁ, 글자가 뒤집히는 쓰기)는 이 나이에 흔합니다. 야단치지 말고 “이쪽에 뾰족한 게 있는 게 ㅏ”처럼 단서를 주며 다시 보여 주세요.</p></div>
+</section>
+
+<!-- ================= 문제 해결 ================= -->
+<section class="panel" id="p-fix" role="tabpanel" aria-labelledby="t-fix">
+  <h2>이럴 땐 어떻게 하나요?</h2>
+  <p class="sub">자주 겪는 상황과 대처법입니다.</p>
+
+  <h4>아이가 글자를 자꾸 잊어버려요</h4>
+  <p>정상적인 과정입니다. 새 글자 수를 줄이고 복습 비중을 늘리세요. 같은 글자를 하루에 세 번, 서로 다른 활동(카드 → 놀이 → 쓰기)으로 만나게 하면 기억이 단단해집니다. 그림 단서(ㅁ-모자 등)를 붙이는 것도 도움이 됩니다.</p>
+
+  <h4>ㅂ과 ㅁ, ㅓ와 ㅗ 등 비슷한 글자를 헷갈려요</h4>
+  <p>비슷한 글자를 한꺼번에 가르치지 말고 시간을 두고 하나씩 익힙니다. 충분히 익숙해진 뒤 두 글자를 나란히 놓고 차이를 말로 표현하게 합니다. (“ㅁ은 위가 닫혀 있고 ㅂ은 위가 뚫려 있어”) 입 모양과 소리 차이도 함께 확인하세요.</p>
+
+  <h4>낱자는 아는데 합쳐서 읽지를 못해요</h4>
+  <p>소리 이어 붙이기(블렌딩)에서 막힌 경우가 많습니다. 자음 소리를 길게 늘이고 모음으로 미끄러지듯 이어 주세요. (“ㅁ~~ㅏ~~ 마”) 손가락으로 자음에서 모음으로 미끄러뜨리며 소리를 잇는 동작을 곁들이면 좋습니다. 단계 0의 소리 이어 말하기(로봇 말투)도 다시 해 보세요.</p>
+
+  <h4>글자를 외워서 읽는 것 같아요</h4>
+  <p>그림책이나 단어 카드를 통째로 외워 읽는 것은 문자 학습의 자연스러운 시작입니다. 다만 낱자 원리를 이어 주려면 “배운 적 없는 글자” 읽기를 자주 해 보세요. 예를 들어 아직 카드로 안 본 “도, 두, 리” 같은 조합을 즉석에서 만들어 읽게 하면 원리를 이해했는지 알 수 있습니다.</p>
+
+  <h4>공부하자고 하면 싫어해요</h4>
+  <ul>
+    <li>수업 시간을 10분으로 줄이고 놀이 비중을 높이세요.</li>
+    <li>“공부하자” 대신 “카드 낚시 할까?”처럼 활동 이름으로 제안합니다.</li>
+    <li>아이가 활동을 고르게 하면 통제감이 생겨 참여도가 올라갑니다.</li>
+    <li>정답을 맞히지 못했을 때 표정이 굳지 않았는지 부모의 반응도 돌아보세요.</li>
+  </ul>
+
+  <h4>이미 읽는데 쓰기를 싫어해요</h4>
+  <p>손 힘과 눈-손 협응이 아직 부족한 경우가 많습니다. 쓰기는 큰 글씨, 자석 글자, 스티커 글자 만들기로 대체하고, 그림 그리기·가위질·클레이 놀이로 소근육을 먼저 기르세요.</p>
+
+  <h4>형제·친구와 비교하게 돼요</h4>
+  <p>한글을 떼는 시기는 5세에서 8세까지 폭이 넓고, 늦게 시작해도 초등 저학년 안에 충분히 따라잡는 아이가 많습니다. 어제의 아이와 오늘의 아이를 비교해 주세요.</p>
+
+  <div class="callout warn">
+    <p><strong>전문가 상담이 필요할 수 있는 신호</strong></p>
+    <ul>
+      <li>충분히 연습했는데도 몇 달간 글자와 소리를 연결하는 데 어려움이 계속된다.</li>
+      <li>말소리를 나누거나 라임(운)을 찾는 놀이가 유독 어렵다.</li>
+      <li>글자를 볼 때 극심한 불안이나 회피가 있다.</li>
+      <li>가족 중에 읽기 어려움이 있었던 경우.</li>
+    </ul>
+    <p>걱정되면 소아청소년과, 언어치료·학습 클리닉, 학교의 담임 교사와 상담해 보세요. 조기에 확인하면 도움을 받기 쉽습니다. 이 가이드는 일반적인 교육 안내이며 진단을 대신하지 않습니다.</p>
+  </div>
+</section>
+
+<!-- ================= 체크리스트 ================= -->
+<section class="panel" id="p-check" role="tabpanel" aria-labelledby="t-check">
+  <h2>진도 체크리스트</h2>
+  <p class="sub">체크한 내용은 이 브라우저에 저장됩니다. 저장이 되지 않는 환경에서는 새로고침하면 초기화될 수 있습니다.</p>
+
+  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+    <strong id="prog-text">0 / 0 완료</strong>
+    <button class="btn" id="reset-check" type="button">모두 지우기</button>
+  </div>
+  <div class="progress" aria-hidden="true"><i id="prog-bar"></i></div>
+
+  <div id="check-root"></div>
+
+  <div class="callout ok">
+    <p>모든 칸을 채우지 못해도 괜찮습니다. 체크가 비어 있는 칸은 “아직 배우는 중”이지 “못 하는 것”이 아닙니다. 이 자리를 기준으로 다음 주 계획을 세우세요.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">일반적인 한글 문해 지도 원칙에 바탕한 안내입니다. 아이의 발달 속도와 기관의 교육과정에 맞춰 조절해서 사용하세요.</div>
+</footer>
+
+<script>
+(function () {
+  /* ---------- Tabs ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab-btn'));
+  function show(id) {
+    tabs.forEach(function (t) {
+      var on = t.id === id;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      var panel = document.getElementById(t.getAttribute('aria-controls'));
+      if (panel) panel.classList.toggle('active', on);
+    });
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () {
+      show(t.id);
+      var top = document.querySelector('header.top').offsetHeight;
+      if (window.scrollY > top) window.scrollTo({ top: top, behavior: 'auto' });
+    });
+    t.addEventListener('keydown', function (e) {
+      var n = null;
+      if (e.key === 'ArrowRight') n = tabs[(i + 1) % tabs.length];
+      if (e.key === 'ArrowLeft') n = tabs[(i - 1 + tabs.length) % tabs.length];
+      if (n) { n.focus(); show(n.id); e.preventDefault(); }
+    });
+  });
+  show('t-intro');
+
+  /* ---------- Hangul composition ---------- */
+  var INIT = { 'ㄱ':0,'ㄲ':1,'ㄴ':2,'ㄷ':3,'ㄸ':4,'ㄹ':5,'ㅁ':6,'ㅂ':7,'ㅃ':8,'ㅅ':9,'ㅆ':10,'ㅇ':11,'ㅈ':12,'ㅉ':13,'ㅊ':14,'ㅋ':15,'ㅌ':16,'ㅍ':17,'ㅎ':18 };
+  var MED  = { 'ㅏ':0,'ㅐ':1,'ㅑ':2,'ㅒ':3,'ㅓ':4,'ㅔ':5,'ㅕ':6,'ㅖ':7,'ㅗ':8,'ㅘ':9,'ㅙ':10,'ㅚ':11,'ㅛ':12,'ㅜ':13,'ㅝ':14,'ㅞ':15,'ㅟ':16,'ㅠ':17,'ㅡ':18,'ㅢ':19,'ㅣ':20 };
+  var FIN  = { '':0,'ㄱ':1,'ㄴ':4,'ㄷ':7,'ㄹ':8,'ㅁ':16,'ㅂ':17,'ㅇ':21 };
+  function syl(i, m, f) {
+    return String.fromCharCode(0xAC00 + (INIT[i] * 21 + MED[m]) * 28 + (FIN[f || ''] || 0));
+  }
+  function speak(text) {
+    try {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = 'ko-KR'; u.rate = 0.7;
+      window.speechSynthesis.speak(u);
+    } catch (e) { /* 음성 미지원 */ }
+  }
+  function cellBtn(text) {
+    var td = document.createElement('td');
+    var b = document.createElement('button');
+    b.type = 'button'; b.textContent = text;
+    b.setAttribute('aria-label', text + ' 소리 듣기');
+    b.addEventListener('click', function () { speak(text); });
+    td.appendChild(b);
+    return td;
+  }
+
+  /* 자음 × 모음 표 */
+  var consonants = ['ㅇ','ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅅ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+  var vowels = ['ㅏ','ㅑ','ㅓ','ㅕ','ㅗ','ㅛ','ㅜ','ㅠ','ㅡ','ㅣ'];
+  var stageOf = { 'ㅇ':['a','1'],'ㄱ':['a','2'],'ㄴ':['a','2'],'ㅁ':['a','2'],'ㅅ':['a','2'],'ㅈ':['b','2'],'ㅂ':['b','2'],'ㄷ':['b','2'],'ㅎ':['b','2'],'ㄹ':['c','3'],'ㅊ':['c','3'],'ㅋ':['c','3'],'ㅌ':['c','3'],'ㅍ':['c','3'] };
+  var main = document.getElementById('chart-main');
+  var head = document.createElement('tr');
+  head.appendChild(document.createElement('th'));
+  vowels.forEach(function (v) { var th = document.createElement('th'); th.textContent = v; head.appendChild(th); });
+  main.appendChild(head);
+  consonants.forEach(function (c) {
+    var tr = document.createElement('tr');
+    var th = document.createElement('th');
+    th.textContent = c;
+    var tag = document.createElement('span');
+    var s = stageOf[c];
+    tag.className = 'stage-tag st-' + (s[0] === 'a' ? 'a' : s[0] === 'b' ? 'b' : 'c');
+    tag.textContent = '단계 ' + s[1];
+    th.appendChild(document.createElement('br'));
+    th.appendChild(tag);
+    tr.appendChild(th);
+    vowels.forEach(function (v) { tr.appendChild(cellBtn(syl(c, v))); });
+    main.appendChild(tr);
+  });
+
+  /* 받침 표 */
+  var finals = ['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅇ'];
+  var bases = [['ㄱ','ㅏ'],['ㅁ','ㅏ'],['ㅅ','ㅗ'],['ㅂ','ㅜ'],['ㄴ','ㅣ'],['ㅎ','ㅏ']];
+  var bt = document.getElementById('chart-batchim');
+  var bh = document.createElement('tr');
+  bh.appendChild(document.createElement('th'));
+  finals.forEach(function (f) { var th = document.createElement('th'); th.textContent = f; bh.appendChild(th); });
+  bt.appendChild(bh);
+  bases.forEach(function (b) {
+    var tr = document.createElement('tr');
+    var th = document.createElement('th');
+    th.textContent = syl(b[0], b[1]);
+    tr.appendChild(th);
+    finals.forEach(function (f) { tr.appendChild(cellBtn(syl(b[0], b[1], f))); });
+    bt.appendChild(tr);
+  });
+
+  /* ---------- Checklist ---------- */
+  var groups = [
+    { t: '단계 0 · 말소리', items: ['3음절 단어를 박수로 나눌 수 있다', '첫소리가 같은 단어를 찾을 수 있다', '“바나나에서 바를 빼면?” 같은 소리 빼기를 할 수 있다', '자기 이름 글자를 알아본다'] },
+    { t: '단계 1 · 기본 모음', items: ['ㅏ ㅓ ㅗ ㅜ ㅡ ㅣ 소리를 안다', '아이, 오이를 읽는다', 'ㅇ이 소리 없는 자리라는 것을 이해한다'] },
+    { t: '단계 2 · 기본 자음', items: ['ㄱ ㄴ ㅁ ㅅ으로 만든 글자를 읽는다', 'ㅈ ㅂ ㄷ ㅎ으로 만든 글자를 읽는다', '소리를 이어 붙여 새 글자를 읽는다(블렌딩)', '가지, 나비, 모자 같은 단어를 읽는다'] },
+    { t: '단계 3 · ㄹ, 거센소리', items: ['ㄹ이 든 글자를 읽는다', 'ㄱ-ㅋ, ㄷ-ㅌ, ㅂ-ㅍ, ㅈ-ㅊ의 차이를 안다', '자음 14개를 섞어도 읽는다'] },
+    { t: '단계 4 · ㅑㅕㅛㅠ, ㅐㅔ', items: ['ㅑ ㅕ ㅛ ㅠ를 읽는다', 'ㅐ ㅔ가 든 자주 쓰는 단어를 읽는다'] },
+    { t: '단계 5 · 복합 모음, 쌍자음', items: ['ㅘ ㅝ ㅢ ㅚ ㅟ 등이 든 단어를 읽는다', 'ㄲ ㄸ ㅃ ㅆ ㅉ를 읽는다'] },
+    { t: '단계 6 · 받침', items: ['ㄴ ㅁ ㅇ ㄹ 받침을 읽는다', 'ㄱ ㅂ ㄷ 받침을 읽는다', '같은 글자에 받침을 바꿔 읽는다', '산, 곰, 밥, 책 같은 단어를 읽는다'] },
+    { t: '단계 7 · 소리가 바뀌는 글자', items: ['밥이, 꽃이 같은 이어 읽기를 자연스럽게 읽는다', '닭, 없다, 읽다 등 자주 쓰는 겹받침 단어를 읽는다'] },
+    { t: '단계 8 · 문장·책', items: ['짧은 문장을 띄어 읽는다', '마침표에서 쉬어 읽는다', '글밥이 적은 그림책 한 권을 읽는다', '읽은 책의 내용을 자기 말로 이야기한다'] },
+    { t: '쓰기', items: ['자기 이름을 쓴다', '배운 자음·모음을 알맞은 위치에 쓴다', '받침이 있는 글자를 쓴다', '좋아하는 단어를 소리 나는 대로 쓴다', '짧은 문장을 쓴다'] }
+  ];
+  var KEY = 'hangul-guide-age7-checks';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { } }
+  var root = document.getElementById('check-root');
+  var boxes = [];
+  groups.forEach(function (g, gi) {
+    var wrap = document.createElement('div');
+    wrap.className = 'check-group';
+    var h = document.createElement('h4'); h.textContent = g.t; wrap.appendChild(h);
+    g.items.forEach(function (text, ii) {
+      var id = gi + '-' + ii;
+      var label = document.createElement('label');
+      var cb = document.createElement('input');
+      cb.type = 'checkbox'; cb.checked = !!state[id];
+      cb.addEventListener('change', function () { state[id] = cb.checked; save(); update(); });
+      var span = document.createElement('span'); span.textContent = text;
+      label.appendChild(cb); label.appendChild(span);
+      wrap.appendChild(label);
+      boxes.push({ id: id, el: cb });
+    });
+    root.appendChild(wrap);
+  });
+  function update() {
+    var done = boxes.filter(function (b) { return b.el.checked; }).length;
+    document.getElementById('prog-text').textContent = done + ' / ' + boxes.length + ' 완료';
+    document.getElementById('prog-bar').style.width = (boxes.length ? done / boxes.length * 100 : 0) + '%';
+  }
+  document.getElementById('reset-check').addEventListener('click', function () {
+    boxes.forEach(function (b) { b.el.checked = false; });
+    state = {}; save(); update();
+  });
+  update();
+})();
+</script>
+</body>
+</html>
